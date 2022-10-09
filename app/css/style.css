@@ -1,0 +1,132 @@
+@font-face {
+    font-family: chat_font;
+url("\\fonts\\font.ttf")
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'chat_font';
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #7ca4ee;
+    padding: 0 10px;
+}
+
+.wrapper {
+    background: #ffffff;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 0 228px 0 rgba(79, 30, 30, 0.1),
+    0 100px 100px -100px rgba(0, 0, 0, 0.5);
+
+}
+
+
+.form {
+    padding: 35px 20px;
+}
+
+.form header {
+    font-size: 25px;
+    font-weight: 600;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #e6e6e6;
+}
+
+.form form {
+    margin: 20px 0;
+}
+
+.form form .error-text {
+    color: #d40012;
+    padding: 3px 3px;
+    visibility: hidden;
+}
+
+
+.form form .field {
+    display: flex;
+    margin-bottom: 5px;
+    flex-direction: column;
+    position: relative;
+}
+
+.form form .input input {
+    height: 40px;
+    width: 100%;
+    font-size: 16px;
+    padding: 0 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.form form .field input {
+    outline: none;
+}
+
+.form form .button input {
+    height: 45px;
+    border: none;
+    color: #333;
+    font-size: 17px;
+    background: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 13px;
+}
+
+
+.form .link {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 17px;
+}
+
+.form .link a {
+    color: #333;
+}
+
+.form .link a:hover {
+    text-decoration: underline;
+}
+
+.form form .field input:hover {
+
+    border: 1.5px solid #322e2e;
+}
+
+.form form .button input:hover {
+    color: #fff;
+    background: #333;
+}
+
+/* Responive media query */
+@media screen and (max-width: 450px) {
+    .form, .users {
+        padding: 20px;
+    }
+
+    .form header {
+        text-align: center;
+    }
+
+    .form form .name-details {
+        flex-direction: column;
+    }
+
+    .form .name-details .field:first-child {
+        margin-right: 0px;
+    }
+
+    .form .name-details .field:last-child {
+        margin-left: 0px;
+    }
+}
