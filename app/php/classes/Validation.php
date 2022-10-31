@@ -9,6 +9,7 @@ class Validation
     static $empty_field_message = 'Поле обязательно для заполнения';
     static $min_count_char_message = 'Минимальное количество символов - ';
     static $password_error_message = 'Пароль может содержать только буквы и цифры';
+    static $name_error_message = 'Имя может содержать только буквы';
     static $password_repeat_error_message = 'Пароли должны совпадать';
     static $login_unique_error = 'Такой логин уже существует';
     static $email_unique_error = 'Такой email уже существует';
@@ -38,7 +39,7 @@ class Validation
 
         if (empty($loginVal))
             $msg += [$login => Validation::$empty_field_message];
-        else if (!$validate->isCharSymbols($loginVal, 6))
+        else if (!$validate->isCountSymbols($loginVal, 6))
             $msg += [$login => Validation::$min_count_char_message . 6];
         else if(preg_match("|\s|", $loginVal))
             $msg += [$login => Validation::$space_error];
@@ -46,10 +47,12 @@ class Validation
 
         if (empty($nameVal))
             $msg += [$name => Validation::$empty_field_message];
-        else if (!$validate->isCharSymbols($nameVal, 2))
+        else if (!$validate->isCountSymbols($nameVal, 2))
             $msg += [$name => Validation::$min_count_char_message . 2];
         else if(preg_match("|\s|", $nameVal))
-            $msg += [$login => Validation::$space_error];
+            $msg += [$name => Validation::$space_error];
+        else if(!preg_match('/^[a-zа-яё\s]+$/iu',$nameVal))
+            $msg += [$name => Validation::$name_error_message];
 
 
         if (empty($repeat_passwVal))
@@ -58,7 +61,7 @@ class Validation
 
         if (empty($passwVal))
             $msg += [$passw => Validation::$empty_field_message];
-        else if (!$validate->isCharSymbols($passwVal, 6))
+        else if (!$validate->isCountSymbols($passwVal, 6))
             $msg += [$passw => Validation::$min_count_char_message . 6];
         else if (!ctype_alnum($passwVal))
             $msg += [$passw => Validation::$password_error_message];
@@ -78,7 +81,7 @@ class Validation
         return false;
     }
 
-    public function isCharSymbols($str, $count)
+    public function isCountSymbols($str, $count)
     {
         if (strlen($str) >= $count)
             return true;
@@ -96,8 +99,10 @@ class Validation
 
     public function validateAllLogin($data, $login, $passw)
     {
-        $loginVal = preg_replace('/\s\s+/', '', $data[$login]);
-        $passwVal = preg_replace('/\s\s+/', '', $data[$passw]);
+        /*$loginVal = preg_replace('/\s\s+/', '', $data[$login]);
+        $passwVal = preg_replace('/\s\s+/', '', $data[$passw]);*/
+        $loginVal = $data[$login];
+        $passwVal = $data[$passw];
         $msg = [];
         if (empty($loginVal))
             $msg += [$login => Validation::$empty_field_message];
