@@ -19,9 +19,12 @@ class LoginClass
         $array_error_messages = $validation->validateAllLogin($_POST, 'login', 'password');
 
         if (empty($array_error_messages)) {
-
+/*
             $loginVal = preg_replace('/\s\s+/', '', htmlspecialchars($_POST['login']));
-            $passwVal = preg_replace('/\s\s+/', '', htmlspecialchars($_POST['password']));
+            $passwVal = preg_replace('/\s\s+/', '', htmlspecialchars($_POST['password']));*/
+
+            $loginVal = htmlspecialchars($_POST['login']);
+            $passwVal = htmlspecialchars($_POST['password']);
 
             $userByLogin = Crud::getUserByLogin($loginVal);// надо бы чтобы возвращал User, но уже не успеваю
             if ($userByLogin != null)
