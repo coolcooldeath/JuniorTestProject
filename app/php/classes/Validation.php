@@ -48,7 +48,7 @@ class Validation
 
         if (empty($nameVal))
             $msg += [$name => Validation::$empty_field_message];
-        else if (strlen($nameVal) > 2)
+        else if (mb_strlen($nameVal) > 2)
             $msg += [$name => Validation::$max_count_char_message . 2];
         else if(preg_match("|\s|", $nameVal))
             $msg += [$name => Validation::$space_error];
