@@ -6,13 +6,13 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 error_reporting(E_ERROR | E_PARSE);
 $segments = explode('/', trim($uri, '/'));
 if(empty($segments[3])){
-    if ($segments[2] === 'login' && empty($segments[3]))
+    if ($segments[2] === 'login.php' && empty($segments[3]))
         include 'login.php';
-    else if ($segments[2] === 'registry' && empty($segments[3]))
+    else if ($segments[2] === 'registry.php' && empty($segments[3]))
         include 'signup.php';
-    else if ($segments[2] === 'hello_user' && AuthClass::isAuth() && empty($segments[3]))
+    else if ($segments[2] === 'hello_user.php' && AuthClass::isAuth() && empty($segments[3]))
         include 'hello_user.php';
-    else if ($segments[2] === 'hello_user' && empty($segments[3]))
+    else if ($segments[2] === 'hello_user.php' && empty($segments[3]))
         include 'login.php';
     else if ($segments[2] === 'php')
         include 'login.php';

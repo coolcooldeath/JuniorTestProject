@@ -8,7 +8,8 @@ class Validation
     static $email_incorrect_message = 'Электронная почта неккоректна';
     static $empty_field_message = 'Поле обязательно для заполнения';
     static $min_count_char_message = 'Минимальное количество символов - ';
-    static $password_error_message = 'Пароль может содержать только буквы и цифры';
+    static $max_count_char_message = 'Максимальное количество символов - ';
+    static $password_error_message = 'Пароль должен содержать латинские буквы и цифры';
     static $name_error_message = 'Имя может содержать только буквы';
     static $password_repeat_error_message = 'Пароли должны совпадать';
     static $login_unique_error = 'Такой логин уже существует';
@@ -47,8 +48,8 @@ class Validation
 
         if (empty($nameVal))
             $msg += [$name => Validation::$empty_field_message];
-        else if (!$validate->isCountSymbols($nameVal, 2))
-            $msg += [$name => Validation::$min_count_char_message . 2];
+        else if (strlen($nameVal) > 2)
+            $msg += [$name => Validation::$max_count_char_message . 2];
         else if(preg_match("|\s|", $nameVal))
             $msg += [$name => Validation::$space_error];
         else if(!preg_match('/^[a-zа-яё\s]+$/iu',$nameVal))
@@ -63,7 +64,7 @@ class Validation
             $msg += [$passw => Validation::$empty_field_message];
         else if (!$validate->isCountSymbols($passwVal, 6))
             $msg += [$passw => Validation::$min_count_char_message . 6];
-        else if (!ctype_alnum($passwVal))
+        else if (!preg_match('/[a-zA-Z]/',$passwVal) || !preg_match('/\d/',$passwVal))
             $msg += [$passw => Validation::$password_error_message];
         else if (!($repeat_passwVal === $passwVal))
             $msg += [$repeat_passw => Validation::$password_repeat_error_message];

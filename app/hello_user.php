@@ -3,7 +3,7 @@ session_start();
 error_reporting(E_ERROR | E_PARSE);
 include_once "php/classes/AuthClass.php";
 if (!AuthClass::isAuth()) {
-    header("location: login");
+    header("location: login.php");
 }
 ?>
 

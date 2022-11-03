@@ -2,7 +2,7 @@
 session_start();
 include_once "php/classes/AuthClass.php";
 if (AuthClass::isAuth()) {
-    header("location: hello_user");
+    header("location: hello_user.php");
 }
 ?>
 
@@ -33,7 +33,7 @@ if (AuthClass::isAuth()) {
                 <input type="submit" name="submit" value="Войти">
             </div>
         </form>
-        <div class="link">Не зарегистрированы? <a href="registry">Регистрация</a></div>
+        <div class="link">Не зарегистрированы? <a href="registry.php">Регистрация</a></div>
     </section>
 </div>
 

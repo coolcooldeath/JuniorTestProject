@@ -9,7 +9,7 @@ class AuthClass
 {
     static function isAuth()
     { //Проверка по куки + сессия
-        session_start();
+
         if (isset($_SESSION['id'])) { // если есть сессия проверяются куки
             if (isset($_COOKIE['login']) && isset($_COOKIE['password'])) { //если есть куки, они продлеваются
                 setcookie("login", $_COOKIE['login'], time() + 3600, '/', $_SERVER['SERVER_NAME']);

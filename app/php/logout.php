@@ -8,7 +8,7 @@ setcookie("login", "");
 setcookie("password", "");
 setcookie("name", "");
 unset($_SESSION['id']);
-header("location: login");
+header("location: login.php");
 
 
 
